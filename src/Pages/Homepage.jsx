@@ -1,54 +1,67 @@
-import React, { useState } from 'react';
+import DOMPurify from 'dompurify';
 import juice from 'juice';
+import React, { useState } from 'react';
 
 function Homepage() {
-  const [htmlInput, setHtmlInput] = useState('<div class="hero_section1">this is a test div</div>');
-  const [htmlCss, setCssInput] = useState('.hero_section1{padding: 5rem 2rem;background-color: blue;}');
+  const [htmlInput, setHtmlInput] = useState(
+    '<div class="hero_section1">this is a test div</div>'
+  );
+  const [htmlCss, setCssInput] = useState(
+    '.hero_section1{padding: 5rem 2rem;background-color: blue;}'
+  );
   const [htmlOutput, setHtmlOutput] = useState('');
   const [sectionName, setsectionName] = useState('Test Array');
 
   const dataArr = JSON.parse(localStorage.getItem('dataArr')) || [];
-  
-  const handlesave = async () =>{
-    var result = juice("<style>"+htmlCss+"</style>"+htmlInput+"");
+
+  const handlesave = async () => {
+    var result = juice(
+      '<style>' + htmlCss + '</style>' + DOMPurify.sanitize(htmlInput) + ''
+    );
     const temp = {
       id: sectionName,
       label: sectionName,
       content: result
-    }
+    };
     var updatedArr = [...dataArr, temp];
-    localStorage.setItem("dataArr", JSON.stringify(updatedArr));
-    
+    localStorage.setItem('dataArr', JSON.stringify(updatedArr));
     setHtmlOutput(result);
-  }
+  };
 
   return (
-    <div className='container' data-gjs-type="editable" data-gjs-editable="true">
-      <div className='code'>
+    <div
+      className="container"
+      data-gjs-type="editable"
+      data-gjs-editable="true"
+    >
+      <div className="code">
         <input
           value={sectionName}
-          onChange={(e)=>setsectionName(e.target.value)}
-          placeholder='Section name'
+          onChange={e => setsectionName(e.target.value)}
+          placeholder="Section name"
         />
         <textarea
           value={htmlCss}
-          onChange={(e)=>setCssInput(e.target.value)}
+          onChange={e => setCssInput(e.target.value)}
           rows="5"
           cols="50"
-          placeholder='Enter Css'
+          placeholder="Enter Css"
         ></textarea>
         <textarea
           value={htmlInput}
-          onChange={(e)=>setHtmlInput(e.target.value)}
+          onChange={e => setHtmlInput(e.target.value)}
           rows="5"
           cols="50"
-          placeholder='Enter html'
+          placeholder="Enter html"
         ></textarea>
         <button onClick={handlesave}>Save Component</button>
       </div>
-      <div className='output' dangerouslySetInnerHTML={{__html: htmlOutput}} />
+      <div
+        className="output"
+        dangerouslySetInnerHTML={{ __html: htmlOutput }}
+      />
     </div>
-  )
+  );
 }
 
-export default Homepage
+export default Homepage;

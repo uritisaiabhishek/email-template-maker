@@ -5,6 +5,12 @@
   "dependencies": {
     "@vitejs/plugin-react": "^4.1.1",
     "@vitejs/plugin-react-swc": "^3.4.1",
+    "eslint": "^8.33.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "prettier": "2.8.7",
+    "dompurify": "^3.0.6",
     "grapesjs": "^0.21.7",
     "grapesjs-preset-webpage": "^1.0.3",
     "juice": "^9.1.0",
