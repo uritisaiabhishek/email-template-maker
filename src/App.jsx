@@ -12,7 +12,7 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route index element={<Homepage />} />
+        <Route path='/' element={<Homepage />} />
         <Route path='/builder' element={<Builderpage />} />
       </Routes>
       <Footer />
