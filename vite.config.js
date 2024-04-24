@@ -3,9 +3,10 @@ import { defineConfig } from 'vite';
 import svgrPlugin from 'vite-plugin-svgr';
 
 export default defineConfig({
+  base: '/email-template-maker/',
   plugins: [react(), svgrPlugin({ svgrOptions: { icon: true } })],
   server: {
-    port: 3000,
-    open: 'http://localhost:3000',
+    port: 8000,
+    open: 'http://localhost:8000',
   },
 });

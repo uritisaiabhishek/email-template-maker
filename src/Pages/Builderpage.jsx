@@ -7,8 +7,11 @@ import '../assets/sass/styles.scss';
 
 function Builderpage() {
     const editorRef = useRef(null);
+
     let data = JSON.parse(localStorage.getItem('dataArr'));
+
     console.log(data);
+
     useEffect(() => {
       const editor = grapesjs.init({
         height: "calc(100vh - 70px)",
@@ -32,12 +35,12 @@ function Builderpage() {
         },
       });
       // Make blocks editable
-  editor.on('component:selected', (model) => {
-    const isEditable = model.get('editable');
-    if (isEditable) {
-      editor.Commands.run('core:editContent', { forceEdit: true });
-    }
-  });
+      editor.on('component:selected', (model) => {
+        const isEditable = model.get('editable');
+        if (isEditable) {
+          editor.Commands.run('core:editContent', { forceEdit: true });
+        }
+      });
       // You can configure GrapesJS further and add plugins/settings as needed.
       return () => {
         // Clean up the GrapesJS instance when the component unmounts

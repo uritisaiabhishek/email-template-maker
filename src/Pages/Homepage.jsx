@@ -5,7 +5,7 @@ function Homepage() {
   const [htmlInput, setHtmlInput] = useState('<div class="hero_section1">this is a test div</div>');
   const [htmlCss, setCssInput] = useState('.hero_section1{padding: 5rem 2rem;background-color: blue;}');
   const [htmlOutput, setHtmlOutput] = useState('');
-  const [sectionName, setsectionName] = useState('Test Array');
+  const [sectionName, setsectionName] = useState('Hero Section');
 
   const dataArr = JSON.parse(localStorage.getItem('dataArr')) || [];
   
